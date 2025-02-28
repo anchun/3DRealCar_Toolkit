@@ -4,7 +4,8 @@
 <img src="assets/teaser.png"/>
 
 
-
+## Free Commercial Usage
+**3DRealCar dataset is allowed commercial usage for free. The dataset license is Apache-2.0.** 
 
 ## 😮 Highlights
 - Our 3DRealCar is the first large-scale 3D real car dataset containing both densely captured RGB-D images and point clouds.
@@ -15,6 +16,7 @@
 
 Welcome to **watch** 👀 this repository for the latest updates.
 
+
 ✅ **[2024.6.10]** : We have released our paper, 3DRealCar on [arXiv](https://arxiv.org/html/2406.04875v1).
 
 ✅ **[2024.6.10]** : Release [project page](https://xiaobiaodu.github.io/3drealcar/).
@@ -23,6 +25,7 @@ Welcome to **watch** 👀 this repository for the latest updates.
 
 ✅ **[2024.8.15]** : We are releasing our dataset. You can download our dataset in the [project page](https://xiaobiaodu.github.io/3drealcar/). 
 
+✅ **[2025.1.21]** : Release 3DRealCar dataset [download page](https://xiaobiaodu.github.io/3drealcar/download.html). 
 
 
 
