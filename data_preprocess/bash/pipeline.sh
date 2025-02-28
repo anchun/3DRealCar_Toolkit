@@ -15,7 +15,6 @@ if [ -z ${exp_name} ]; then
     exit 0;
 fi
 # RDMA
-upload_dir=/path/to/rawdata/path
 dataset_dir=/path/to/save/path
 codebase_dir=/path/to/3DRealCar_Dataset/data_preprocess
 cd ${codebase_dir}
@@ -58,13 +57,13 @@ if [ $command == 'dataset' ]; then
     fi
     if [ ! -d ${dataset_dir}/${dataset_name}/3dscanner_origin ]; then
         mkdir -p ${dataset_dir}/${dataset_name}
-        ln -s ${upload_dir}/${dataset_name}/3dscanner_origin ${dataset_dir}/${dataset_name}/3dscanner_origin
+        ln -s ${dataset_dir}/${dataset_name}/3dscanner_origin ${dataset_dir}/${dataset_name}/3dscanner_origin
     fi
     python3 entrances/dataset_adaptor.py ${processed_type} \
         --search_dir ${dataset_dir}/${dataset_name}/3dscanner_origin \
         --save_dir ${processed_dataset_dir}
     mkdir -p ${processed_dataset_dir}/arkit
-    cp -r ${upload_dir}/${dataset_name}/3dscanner_origin/frame*.json ${processed_dataset_dir}/arkit/
+    cp -r ${dataset_dir}/${dataset_name}/3dscanner_origin/frame*.json ${processed_dataset_dir}/arkit/
     echo "copied arkit jsons"
     exit 0;
 fi

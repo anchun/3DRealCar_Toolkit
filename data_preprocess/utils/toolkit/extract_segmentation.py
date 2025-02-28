@@ -134,10 +134,10 @@ def segment_with_text_prompt(images_lists, text_prompt, output_dir, skip_list, T
         mask = mask_final.cpu().numpy()
         os.makedirs(save_dir, exist_ok=True)
         image_base_path = os.path.splitext(os.path.basename(image_path))[0]
-        # output_annotated_frame_with_mask = os.path.join(save_dir, f'{image_base_path}_vis.jpg')
-        # save_image(output_annotated_frame_with_mask, annotated_frame_with_mask)
-        # output_mask = os.path.join(save_dir, f'{image_base_path}.jpg')
-        # save_image(output_mask, mask * 255)
+        output_annotated_frame_with_mask = os.path.join(save_dir, f'{image_base_path}_vis.jpg')
+        save_image(output_annotated_frame_with_mask, annotated_frame_with_mask)
+        output_mask = os.path.join(save_dir, f'{image_base_path}.jpg')
+        save_image(output_mask, mask * 255)
         save_numpy(os.path.join(save_dir, f'{image_base_path}.npy'), mask)
 
         meta = {
