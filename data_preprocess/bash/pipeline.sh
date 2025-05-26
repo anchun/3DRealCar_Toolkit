@@ -15,8 +15,8 @@ if [ -z ${exp_name} ]; then
     exit 0;
 fi
 # RDMA
-dataset_dir=/path/to/save/path
-codebase_dir=/path/to/3DRealCar_Dataset/data_preprocess
+dataset_dir=~/data/3drealcar/
+codebase_dir=~/src/3DRealCar_Toolkit/data_preprocess
 cd ${codebase_dir}
 
 # currently we only use colmap data

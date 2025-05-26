@@ -1,10 +1,13 @@
 ## Preperation
 ```
 # install colmap
-apt-get install colmap
+apt-get install colmap ffmpeg
 
+conda create -n 3drealcar python=3.10
+conda activate 3drealcar
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 # install some python package
-pip install colorama plyfile open3d kornia tqdm imageio imageio[ffmpeg] opencv-python
+pip install colorama plyfile open3d kornia tqdm easydict imageio imageio[ffmpeg] opencv-python
 
 # other you need install GroudingDino and SAM
 wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth && mv sam_vit_h_4b8939.pth resources/models/
@@ -15,8 +18,8 @@ pip install supervision segment_anything
 **Data**
 ```
 # data path structure example: 
-/path/raw_data/dataset_name/3dscanner_origin/xxxx(png or json)
-# for example: /realcar3D/demo_data/raw_data/2024_04_11_11_31_27/3dscanner_origin
+~/data/3drealcar/$DATASET_NAME/3dscanner_origin/xxxx(png or json)
+# for example: ~/data/3drealcar/2024_04_11_11_31_27/3dscanner_origin
 
 # Run below code to rearrange dataset
 cd DATASET_NAME
