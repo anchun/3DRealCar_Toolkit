@@ -177,11 +177,16 @@ if [ $command == 'processed' ]; then
     fi
     processed_dir=${dataset_dir}/${dataset_name}/processed
     mkdir -p ${processed_dir}
+    if [ -f ${dataset_dir}/${dataset_name}/.processed ]; then
+        echo "Skip ${command} since has been already processed!"
+        exit 0;
+    fi
     echo "copying to ${processed_dir} ..."
     cp -aL ${processed_dataset_dir}/${pcd_rescale_dir}/images ${processed_dir}/
     cp -aL ${processed_dataset_dir}/${pcd_rescale_dir}/masks/sam ${processed_dir}/masks
     cp -aL ${processed_dataset_dir}/${pcd_rescale_dir}/sparse ${processed_dir}/
     echo "copy done to ${processed_dir}!"
+    touch ${dataset_dir}/${dataset_name}/.processed
 fi
 
 if [ $command == 'clean' ]; then

@@ -9,6 +9,11 @@ if [ -z ${dataset_dir} ]; then
     dataset_dir=~/data/3drealcar
     echo "Need better to give dataset_dir, currently set to ${dataset_dir}"
 fi
+if [ -f ${dataset_dir}/${dataset_name}/.processed ]; then
+    echo "Skip ${dataset_name} since it has been already processed!"
+    exit 0;
+fi
+
 cd "$(dirname "$0")/data_preprocess"
 ./bash/pipeline.sh $dataset_name dataset $dataset_dir
 ./bash/pipeline.sh $dataset_name segmentation $dataset_dir
