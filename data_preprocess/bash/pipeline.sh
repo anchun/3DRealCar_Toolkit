@@ -1,7 +1,8 @@
 # source ~/.bashrc
 dataset_name=$1
 command=$2
-exp_name=$3 
+dataset_dir=$3
+
 if [ -z ${dataset_name} ]; then
     echo "Must give dataset_name"
     exit 0;
@@ -10,21 +11,22 @@ if [ -z ${command} ]; then
     echo "Must give command"
     exit 0;
 fi
-if [ -z ${exp_name} ]; then
-    echo "Must give exp_name"
-    exit 0;
+if [ -z ${dataset_dir} ]; then
+    dataset_dir=~/data/3drealcar
+    echo "Need better to give dataset_dir, currently set to ${dataset_dir}"
 fi
+
 # RDMA
-dataset_dir=~/data/3drealcar/
-codebase_dir=~/src/3DRealCar_Toolkit/data_preprocess
-cd ${codebase_dir}
+cd "$(dirname "$(dirname "$0")")"
+echo "current folder: $(pwd)"
 
 # currently we only use colmap data
 processed_type=colmap
 processed_dataset_dir=${dataset_dir}/${dataset_name}/${processed_type}_processed
+echo "processed_dataset_dir:" $processed_dataset_dir
 
 # change to your own yaml
-yaml_fn=resources/configs/${exp_name}.yaml
+yaml_fn=resources/configs/demo.yaml
 
 ################################################################################
 # Get processed type
@@ -56,8 +58,8 @@ if [ $command == 'dataset' ]; then
         exit 0;
     fi
     if [ ! -d ${dataset_dir}/${dataset_name}/3dscanner_origin ]; then
-        mkdir -p ${dataset_dir}/${dataset_name}
-        ln -s ${dataset_dir}/${dataset_name}/3dscanner_origin ${dataset_dir}/${dataset_name}/3dscanner_origin
+        mkdir -p ${dataset_dir}/${dataset_name}/3dscanner_origin
+        mv ${dataset_dir}/${dataset_name}/*.* ${dataset_dir}/${dataset_name}/3dscanner_origin
     fi
     python3 entrances/dataset_adaptor.py ${processed_type} \
         --search_dir ${dataset_dir}/${dataset_name}/3dscanner_origin \
@@ -168,3 +170,21 @@ if [ $command == 'pcd_rescale' ]; then
     exit 0;
 fi
 
+if [ $command == 'processed' ]; then
+    if [ ! -f ${processed_dataset_dir}/${pcd_rescale_dir}/.processed ]; then
+        echo "Call pcd_rescale first!"
+        exit 0;
+    fi
+    processed_dir=${dataset_dir}/${dataset_name}/processed
+    mkdir -p ${processed_dir}
+    echo "copying to ${processed_dir} ..."
+    cp -aL ${processed_dataset_dir}/${pcd_rescale_dir}/images ${processed_dir}/
+    cp -aL ${processed_dataset_dir}/${pcd_rescale_dir}/masks/sam ${processed_dir}/masks
+    cp -aL ${processed_dataset_dir}/${pcd_rescale_dir}/sparse ${processed_dir}/
+    echo "copy done to ${processed_dir}!"
+fi
+
+if [ $command == 'clean' ]; then
+    rm -rf ${processed_dataset_dir}
+    echo "remove ${processed_dataset_dir} succeed!"
+fi
