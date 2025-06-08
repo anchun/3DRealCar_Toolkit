@@ -86,7 +86,7 @@ class RescalePCDExtractor(LiGSToolkit):
             f.savefig(pca_save_fn)
             logging.info(f'Rescaling camera trace saved into {pca_save_fn}')
 
-            if scales.max() > 2 or scales.min() < 0.8:
+            if scales.max() > 2 or scales.min() < 0.5:
                 logging.warn(f'Invalid scales: {scales}, may rerun colmap!')
                 raise ValueError
 

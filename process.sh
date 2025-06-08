@@ -15,9 +15,15 @@ if [ -f ${dataset_dir}/${dataset_name}/.processed ]; then
 fi
 
 cd "$(dirname "$0")/data_preprocess"
+echo "./bash/pipeline.sh $dataset_name dataset"
 ./bash/pipeline.sh $dataset_name dataset $dataset_dir
+echo "./bash/pipeline.sh $dataset_name segmentation"
 ./bash/pipeline.sh $dataset_name segmentation $dataset_dir
+echo "./bash/pipeline.sh $dataset_name pcd_clean"
 ./bash/pipeline.sh $dataset_name pcd_clean $dataset_dir
+echo "./bash/pipeline.sh $dataset_name pcd_standard"
 ./bash/pipeline.sh $dataset_name pcd_standard $dataset_dir
+echo "./bash/pipeline.sh $dataset_name pcd_rescale"
 ./bash/pipeline.sh $dataset_name pcd_rescale $dataset_dir
+echo "./bash/pipeline.sh $dataset_name processed"
 ./bash/pipeline.sh $dataset_name processed $dataset_dir

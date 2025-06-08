@@ -157,7 +157,7 @@ TrainDatasetSetting:
     depth: null
     normal: null
     albedo: null
-  run_diagnosis: True # Saving diagnosis videos in each stage
+  run_diagnosis: False # Saving diagnosis videos in each stage
   # parameters for segmentation
   segmentation_prompt: "car mask" # Prompts for extracting segmentations
   # parameters for pcd_clean

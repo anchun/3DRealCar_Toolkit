@@ -47,7 +47,7 @@ fi
 if [ -f ${processed_dataset_dir}/${pcd_rescale_dir}/.processed ]; then
     final_processed_dir=${pcd_rescale_dir}
 fi
-echo "Processed type=${final_processed_dir}"
+echo "Last Processed type=${final_processed_dir}"
 
 ################################################################################
 # Convert dataset from 3Dscanner to COLMAP

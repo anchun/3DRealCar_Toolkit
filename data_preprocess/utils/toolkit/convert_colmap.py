@@ -124,6 +124,9 @@ def main():
             os.system(f'ln -s {os.path.abspath(args.source_path)}/input/* {args.source_path}/images')
             logging.info('[ COLMAP ] Done')
             break
+        if retried_times > 0:
+            logging.error(f'[ COLMAP ] Retried {retried_times} times, Colmap failed, exit ...')
+            break
         retried_times += 1
         os.system(f'rm -rf {args.source_path}/distorted')
         logging.error(f'[ COLMAP ] Retried {retried_times} times, Colmap failed, start to rebuild ...')
