@@ -27,14 +27,14 @@ for dir in $dirs; do
     fi
     echo "./bash/pipeline.sh $dataset_name segmentation"
     ./bash/pipeline.sh $dataset_name segmentation $dataset_dir
-    # echo "./bash/pipeline.sh $dataset_name pcd_clean"
-    # ./bash/pipeline.sh $dataset_name pcd_clean $dataset_dir
-    # echo "./bash/pipeline.sh $dataset_name pcd_standard"
-    # ./bash/pipeline.sh $dataset_name pcd_standard $dataset_dir
-    # echo "./bash/pipeline.sh $dataset_name pcd_rescale"
-    # ./bash/pipeline.sh $dataset_name pcd_rescale $dataset_dir
-    # echo "./bash/pipeline.sh $dataset_name processed"
-    # ./bash/pipeline.sh $dataset_name processed $dataset_dir
+    echo "./bash/pipeline.sh $dataset_name pcd_clean"
+    ./bash/pipeline.sh $dataset_name pcd_clean $dataset_dir
+    echo "./bash/pipeline.sh $dataset_name pcd_standard"
+    ./bash/pipeline.sh $dataset_name pcd_standard $dataset_dir
+    echo "./bash/pipeline.sh $dataset_name pcd_rescale"
+    ./bash/pipeline.sh $dataset_name pcd_rescale $dataset_dir
+    echo "./bash/pipeline.sh $dataset_name processed"
+    ./bash/pipeline.sh $dataset_name processed $dataset_dir
     echo "$(date '+%Y-%m-%d %H:%M:%S') [$count/$total]Processing done: $dataset_name"
 done
 

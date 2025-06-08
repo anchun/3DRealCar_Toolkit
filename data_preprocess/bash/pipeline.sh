@@ -36,7 +36,10 @@ pcd_standard_dir=pcd_standard
 pcd_rescale_dir=pcd_rescale
 final_processed_dir=""
 if [ -f ${processed_dataset_dir}/.dataset ]; then
-    final_processed_dir=${processed_dataset_dir}
+    final_processed_dir='dataset'
+fi
+if [ -f ${processed_dataset_dir}/.segmentation ]; then
+    final_processed_dir='segmentation'
 fi
 if [ -f ${processed_dataset_dir}/${pcd_clean_dir}/.processed ]; then
     final_processed_dir=${pcd_clean_dir}

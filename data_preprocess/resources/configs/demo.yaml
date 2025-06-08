@@ -144,7 +144,7 @@ TestDatasetSetting:
 # Training dataset settings, mainly used in data preparation stage
 TrainDatasetSetting:
   load_down_scale: 1 # downsampling ratio: 1, 2, 4, 8
-  alpha_threshold: 240 # Alpha threshold for changing alpha into {0,1}
+  alpha_threshold: 128 # Alpha threshold for changing alpha into {0,1}
   multi_down_scales: [1.0]
   preload: True
   feature_settings:
