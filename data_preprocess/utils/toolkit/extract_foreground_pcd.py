@@ -86,6 +86,15 @@ class ForegroundPCDExtractor(LiGSToolkit):
                         point3D_ids.append(idx)
                     else:
                         point3D_ids.append(-1)
+                new_cam_info = Image(
+                    id=cam_info.id, 
+                    qvec=cam_info.qvec, 
+                    tvec=cam_info.tvec, 
+                    camera_id=cam_info.camera_id, 
+                    name=cam_info.name, 
+                    xys=image_points[:, :2], 
+                    point3D_ids=point3D_ids)
+                new_cam_extrinsics[cam_key] = new_cam_info
                 name = os.path.splitext(cam_info.name)[0]
                 alpha = load_numpy(os.path.join(self._alphas_dir, name + '.npy'))
                 alpha = np.array(alpha * 255, dtype=np.uint8)[:, :, None]
@@ -98,17 +107,8 @@ class ForegroundPCDExtractor(LiGSToolkit):
                     image_points=image_points, alpha=alpha.copy(), alpha_bbox=alpha_bbox)
                 if len(valid_regions) != 1:
                     logging.warn(f'Should be only 1 valid regions but got {len(valid_regions)} in {cam_info.name}, will be skipped, more details: {valid_regions}')
-                    continue
-                final_valid_names.append(cam_info.name)
-                new_cam_info = Image(
-                    id=cam_info.id, 
-                    qvec=cam_info.qvec, 
-                    tvec=cam_info.tvec, 
-                    camera_id=cam_info.camera_id, 
-                    name=cam_info.name, 
-                    xys=image_points[:, :2], 
-                    point3D_ids=point3D_ids)
-                new_cam_extrinsics[cam_key] = new_cam_info
+                else:
+                    final_valid_names.append(cam_info.name)
                 if self._diagnosis_dir:
                     image_collector.collect(image=visualize_2d_points(
                         image_points=new_cam_info.xys, W=cam.width, H=cam.height, 

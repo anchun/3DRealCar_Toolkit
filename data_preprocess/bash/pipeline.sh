@@ -178,7 +178,7 @@ if [ $command == 'processed' ]; then
         echo "Call pcd_rescale first!"
         exit 0;
     fi
-    processed_dir=${dataset_dir}/${dataset_name}/processed
+    processed_dir=${dataset_dir}/processed/${dataset_name}
     mkdir -p ${processed_dir}
     if [ -f ${dataset_dir}/${dataset_name}/.processed ]; then
         echo "Skip ${command} since has been already processed!"
@@ -192,7 +192,3 @@ if [ $command == 'processed' ]; then
     touch ${dataset_dir}/${dataset_name}/.processed
 fi
 
-if [ $command == 'clean' ]; then
-    rm -rf ${processed_dataset_dir}
-    echo "remove ${processed_dataset_dir} succeed!"
-fi
